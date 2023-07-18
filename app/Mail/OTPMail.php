@@ -16,9 +16,12 @@ class OTPMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+
+    public $otp; //Here i take just simple variable wich will automatic recursion in OTPMail.blade.php file
+
+    public function __construct($otp)
     {
-        //
+        $this->otp=$otp;
     }
 
     /**
@@ -37,7 +40,7 @@ class OTPMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.OTPMail',
         );
     }
 
