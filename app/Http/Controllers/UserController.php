@@ -86,23 +86,31 @@ class UserController extends Controller
     public function SendOTPCode(Request $request){
 
         $email = $request->input('email');
-        $otp = rand(1000,9000);
+        $otp = rand(1000,9999);
 
-       $count =  User::where('email','=','$email')->count();
+       $count =  User::where('email','=', $email)->count();
 
-       if($count==1){
+       if($count == 1){
 
             //OTP email ADDRESS
             Mail::to($email)->send(new OTPMail($otp));
+            
+            //OTP database table update
+            User::where('email','=',$email)->update(['otp'=>$otp]);
 
-            User::where('email','=','$email')->update('otp');
+            return response()->json([
+    
+                "status"=>"success",
+                "message"=>"4-Digit OTP has been sent to your Email"
+    
+            ]);
 
        }else{
 
         return response()->json([
     
             "status"=>"failed",
-            "message"=>"Registration failed!"
+            "message"=>"OTP not sent"
 
         ]);
 
