@@ -23,3 +23,5 @@ Route::post('/registration',[UserController::class, 'UserRegistration']);
 Route::post('/user-login',[UserController::class, 'UserLogin']);
 
 Route::post('/send-otp',[UserController::class, 'SendOTPCode']);
+
+Route::post('/verify-otp',[UserController::class, 'VerifyOTP']);
