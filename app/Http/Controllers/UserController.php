@@ -67,7 +67,7 @@ class UserController extends Controller
                 "status"=>"success",
                 "message"=>"User Login Successfully!",
                 "token"=>$token
-            ]);
+            ],status:200);
 
 
         }else{
@@ -77,7 +77,7 @@ class UserController extends Controller
                 "status"=>"failed",
                 "message"=>"Unothorized"
                 
-            ]);
+            ],status:201);
 
         }
     }
@@ -103,7 +103,7 @@ class UserController extends Controller
                 "status"=>"success",
                 "message"=>"4-Digit OTP has been sent to your Email"
     
-            ]);
+            ],status:200);
 
        }else{
 
@@ -112,7 +112,7 @@ class UserController extends Controller
             "status"=>"failed",
             "message"=>"OTP not sent"
 
-        ]);
+        ],status:401);
 
        }
 
@@ -148,9 +148,43 @@ class UserController extends Controller
             "status"=>"failed",
             "message"=>"OTP not sent"
 
-        ]);
+        ],status:401);
             
         }
+
+
+    }
+
+    public function ResetPassword(Request $request){
+
+        try{
+
+        $email = $request->header('email');
+        $password = $request->input('password');
+
+        //Reset Password Update In database
+        User::where('email','=',$email)->update(['password'=>$password]);
+
+        return response()->json([
+    
+            "status"=>"successful",
+            "message"=>"Password reset Successfully!"
+            
+        ],status:200);
+
+
+        }catch(Exception $exeption){
+            
+            return response()->json([
+    
+                "status"=>"Failed!",
+                "message"=>"Something Went Wrong",
+                
+            ],status:401);
+
+        }
+
+        
 
 
     }

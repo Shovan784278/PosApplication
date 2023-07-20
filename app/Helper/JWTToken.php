@@ -52,7 +52,7 @@ class JWTToken
 
         }catch(Exception $e){
 
-            return 'Unothorized';
+            return 'Unauthorized';
 
         }
         
