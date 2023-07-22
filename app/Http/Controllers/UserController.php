@@ -8,9 +8,38 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
+
+    function LoginPage():View{
+
+        return view('pages.auth.login');
+    }
+
+    function RegistrationPage():View{
+
+        return view('pages.auth.registration');
+    }
+
+    function SendOTP():View{
+
+        return view('pages.auth.send-otp-page');
+    }
+
+    function ResetPass():View{
+
+        return view('pages.auth.reset-password-page');
+    }
+
+    function VerifyOTPPage():View{
+
+        return view('pages.auth.verify-otp-page');
+    }
+
+
+    //Axios 
     
     public function UserRegistration(Request $request){
 

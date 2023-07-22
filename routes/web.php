@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+//Page Route
+Route::get('/login', [UserController::class, 'LoginPage']);
+Route::get('/userRegistration', [UserController::class, 'RegistrationPage']);
+Route::get('/sendOTP', [UserController::class, 'SendOTP']);
+Route::get('/reset-password', [UserController::class, 'SendOTP']); 
+Route::get('/verify-otp', [UserController::class, 'VerifyOTPPage']); 
+Route::get('/dashboard', [DashboardController::class, 'DashboardPage']); 
+
+
+
+
+
+
+//API Web Route for Authentication
 
 Route::post('/registration',[UserController::class, 'UserRegistration']);
 
