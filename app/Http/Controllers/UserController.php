@@ -12,6 +12,7 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    //For page view
 
     function LoginPage():View{
 
@@ -39,7 +40,7 @@ class UserController extends Controller
     }
 
 
-    //Axios 
+    //For Axios 
     
     public function UserRegistration(Request $request){
 
@@ -95,8 +96,8 @@ class UserController extends Controller
     
                 "status"=>"success",
                 "message"=>"User Login Successfully!",
-                "token"=>$token
-            ],status:200);
+                
+            ],status:200)->cookie('token', $token, 60*24*30);
 
 
         }else{
