@@ -20,8 +20,45 @@
 
 <script>
 
-    function ResetPass(){
+   async function ResetPass(){
         
+        let password = document.getElementById('password').value;
+        let cpassword = document.getElementById('cpassword').value;
+
+        if(password.length===0){
+
+            errorToast("Password is reqired");
+
+        }else if(cpassword.length===0){
+
+            errorToast("Confirm Password is Required");
+
+        }else if(password !== cpassword){
+
+            errorToast("Password do not match");
+
+        }else{
+
+            showLoader();
+            let res = await axios.post("/reset-password", {password:password});
+            hideLoader();
+
+            if(res.status === 200 && res.data['status']==='success'){
+
+                successToast (res.data['message']);
+
+                setTimeout(function(){
+
+
+                window.location.href = "/login";
+
+                },1000);
+            }else{
+
+                errorToast(res.data['message']);
+            }
+        }
+
     }
 
 </script>

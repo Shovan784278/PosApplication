@@ -26,8 +26,8 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'LoginPage']);
 Route::get('/userRegistration', [UserController::class, 'RegistrationPage']);
 Route::get('/sendOTP', [UserController::class, 'SendOTP']);
-Route::get('/reset-password', [UserController::class, 'SendOTP']); 
-Route::get('/verify-otp', [UserController::class, 'VerifyOTPPage']); 
+Route::get('/reset-password', [UserController::class, 'ResetPass']); 
+Route::get('/verifyOtp', [UserController::class, 'VerifyOTPPage']); 
 Route::get('/dashboard', [DashboardController::class, 'DashboardPage']); 
 
 

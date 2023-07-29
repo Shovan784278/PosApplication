@@ -168,8 +168,8 @@ class UserController extends Controller
     
                 "status"=>"success",
                 "message"=>"OTP Verification has successful",
-                "token"=>$token
-            ]);
+                
+            ],200)->cookie('token',$token,60*24*30);
 
         }else{
 
@@ -197,7 +197,7 @@ class UserController extends Controller
 
         return response()->json([
     
-            "status"=>"successful",
+            "status"=>"success",
             "message"=>"Password reset Successfully!"
             
         ],status:200);
