@@ -21,16 +21,12 @@ class TokenVerificationMiddleware
 
         if($result == 'Unauthorized'){
 
-            return response()->json([
-    
-                "status"=>"failed",
-                "message"=>"Unauthorized"
-                
-            ],status:401);
+            return redirect('/login');
 
         }else{
 
-            $request->headers->set('email',$result);
+            $request->headers->set('email',$result->userEmail);
+            $request->headers->set('email',$result->userID);
             return $next($request);
 
         }
