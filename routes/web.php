@@ -31,6 +31,8 @@ Route::get('/verifyOtp', [UserController::class, 'VerifyOTPPage']);
 Route::get('/dashboard', [DashboardController::class, 'DashboardPage']); 
 
 
+//Logout Route
+Route::get('/logout',[UserController::class, 'userLogout']);
 
 
 
