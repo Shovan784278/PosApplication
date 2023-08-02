@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    protected $fillable = ['firstName','lastName','email','mobile','password']; 
+    protected $fillable = ['email','firstName','lastName','mobile','password']; 
 
     protected $attributes = [
 

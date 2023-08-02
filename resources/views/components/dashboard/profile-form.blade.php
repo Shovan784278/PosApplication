@@ -4,28 +4,30 @@
             <div class="card animated fadeIn w-100 p-3">
                 <div class="card-body">
                     <h4>User Profile</h4>
-                    <hr/>
+                    <hr />
                     <div class="container-fluid m-0 p-0">
                         <div class="row m-0 p-0">
                             <div class="col-md-4 p-2">
                                 <label>Email Address</label>
-                                <input id="email" placeholder="User Email" class="form-control" type="email"/>
+                                <input readonly id="email" placeholder="User Email" class="form-control"
+                                    type="email" />
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>First Name</label>
-                                <input id="firstName" placeholder="First Name" class="form-control" type="text"/>
+                                <input id="firstName" placeholder="First Name" class="form-control" type="text" />
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>Last Name</label>
-                                <input id="lastName" placeholder="Last Name" class="form-control" type="text"/>
+                                <input id="lastName" placeholder="Last Name" class="form-control" type="text" />
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>Mobile Number</label>
-                                <input id="mobile" placeholder="Mobile" class="form-control" type="mobile"/>
+                                <input id="mobile" placeholder="Mobile" class="form-control" type="mobile" />
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>Password</label>
-                                <input id="password" placeholder="User Password" class="form-control" type="password"/>
+                                <input id="password" placeholder="User Password" class="form-control"
+                                    type="password" />
                             </div>
                         </div>
                         <div class="row m-0 p-0">
@@ -41,56 +43,81 @@
 </div>
 
 <script>
+    
+    getProfile();
+    async function getProfile(){
 
-   async function onUpdate() {
 
-        let email = document.getElementById('email').value; 
+        showLoader();
+        let res = await axios.get("/user-profile");
+        hideLoader();
+
+        // console.log('Response:', res.data);
+        if(res.status===200 && res.data['status']==='success') {
+
+            let data = res.data['data']; // Data from the response 
+            document.getElementById('email').value=data['email'];
+            document.getElementById('firstName').value=data['firstName'];
+            document.getElementById('lastName').value=data['lastName'];
+            document.getElementById('mobile').value=data['mobile'];
+            document.getElementById('password').value=data['password'];
+
+        } else {
+
+            errorToast(res.data['message']);
+        }
+
+    }
+
+
+
+
+    async function onUpdate(){
+
+        
         let firstName = document.getElementById('firstName').value;
         let lastName = document.getElementById('lastName').value;
-        let mobile = document.getElementById('mobile').value;
+        let mobile = document.getElementById('mobile').value; 
         let password = document.getElementById('password').value;
 
-        if(email.length===0){
-
-            errorToast('Email Required');
-
-        }else if(firstName.length===0){
+        if(firstName.length === 0) {
 
             errorToast('First Name Required');
 
-        }else if(lastName.length === 0){
+        } else if (lastName.length === 0) {
 
             errorToast('Last Name Required');
 
-        }else if(lastName.length===0){
+        } else if (lastName.length === 0) {
 
             errorToast('mobile Required');
-            
-        }else if(password.length === 0){
+
+        } else if (password.length === 0) {
 
             errorToast('Password required');
 
-        }else{
+        } else {
             showLoader();
-            let response = await axios.post("/registration",{email:email,firstName:firstName,lastName:lastName,mobile:mobile,password:password})
+            let response = await axios.post("/user-update", {
+                firstName: firstName,
+                lastName: lastName,
+                mobile: mobile,
+                password: password
+            })
             hideLoader()
 
-            if(response.status===200 && response.data['status']==='success'){
-
+            if (response.status === 200 && response.data['status'] === 'success') {
+    
+                successToast(response.data['message']);
+                await getProfile();
                 
+            } else {
 
-                setTimeout(function(){
-
-                 window.location.href="/login";    
-            })
-                
-            }else{
-              
-                errorTost(response.data['message']);
+                errorToast(response.data['message']); 
             }
 
         }
-        
+
     }
 
 </script>
