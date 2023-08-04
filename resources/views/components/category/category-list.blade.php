@@ -63,7 +63,7 @@
     
         $('.editBtn').on('click', async function () {
                let id= $(this).data('id');
-               await FillUpUpdateForm(id)
+               await FileUpUpdateForm(id)
                $("#update-modal").modal('show');
     
     

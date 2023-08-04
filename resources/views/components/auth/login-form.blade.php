@@ -1,28 +1,33 @@
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-7 animated fadeIn col-lg-6 center-screen">
-            <div class="card w-90  p-4">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border rounded shadow-sm p-3">
                 <div class="card-body">
-                    <h4>SIGN IN</h4>
+                    <div class="text-center">
+                        <img src="{{ asset('images/Taposhi.png') }}" style="max-height: 150px; width: auto;" class="logo-dark" alt="">
+                    </div>
+                    <h4 class="text-center mt-3">SIGN IN</h4>
                     <br/>
-                    <input id="email" placeholder="User Email" class="form-control" type="email"/>
+                    <input id="email" placeholder="User Email" class="form-control mt-2" type="email"/>
                     <br/>
-                    <input id="password" placeholder="User Password" class="form-control" type="password"/>
+                    <input id="password" placeholder="User Password" class="form-control mt-2" type="password"/>
                     <br/>
-                    <button onclick="SubmitLogin()" class="btn w-100 btn-primary">Next</button>
-                    <hr/>
-                    <div class="float-end mt-3">
-                        <span>
-                            <a class="text-center ms-3 h6" href="{{url('/userRegistration')}}">Sign Up </a>
-                            <span class="ms-1">|</span>
-                            <a class="text-center ms-3 h6" href="{{url('/sendOTP')}}" target="_blank">Forget Password</a>
-                        </span>
+                    <button onclick="SubmitLogin()" class="btn w-100 btn-primary mt-3">Next</button>
+                    <hr style="margin-top: 15px; margin-bottom: 15px;">
+                    <div class="text-center mt-2">
+                        <a class="h6" href="{{url('/userRegistration')}}">Sign Up</a>
+                        <span class="ms-1">|</span>
+                        <a class="h6" href="{{url('/sendOTP')}}" target="_blank">Forget Password</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
 
 
 <script>
