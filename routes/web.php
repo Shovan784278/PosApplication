@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -50,11 +51,16 @@ Route::get('/customerPage',[CustomerController::class,'CustomerPage'])
     ->middleware([TokenVerificationMiddleware::class]);
 
 
-
+//Email Campaign Page Route
 Route::get('/email-campaign',[CustomerController::class,  'EmailPage']);
     
     // Define a route to handle the form submission
 Route::post('/emailCampaign', [CustomerController::class, 'sendEmailToAllCustomers']);
+
+
+//Product Page Route 
+Route::get('/products', [ProductController::class, 'ProductPage'])
+    ->middleware([TokenVerificationMiddleware::class]);
 
 
 
@@ -82,6 +88,10 @@ Route::get('/user-profile',[UserController::class, 'UserProfile'])
 
 Route::post('/user-update',[UserController::class,'UpdateProfile'])
     ->middleware([TokenVerificationMiddleware::class]);
+
+
+
+
 
 
 
