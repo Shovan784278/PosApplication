@@ -110,3 +110,11 @@ Route::get("/list-customer",[CustomerController::class,'CustomerList'])->middlew
 Route::post("/delete-customer",[CustomerController::class,'CustomerDelete'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/update-customer",[CustomerController::class,'CustomerUpdate'])->middleware([TokenVerificationMiddleware::class]);
 Route::post("/customer-by-id",[CustomerController::class,'CustomerByID'])->middleware([TokenVerificationMiddleware::class]);
+
+
+
+//Product API
+Route::post('/create-product', [ProductController::class, 'createProduct'])
+    ->middleware([TokenVerificationMiddleware::class]);
+Route::post('/delete-product', [ProductController::class, 'DeleteProduct'])
+    ->middleware([TokenVerificationMiddleware::class]);
