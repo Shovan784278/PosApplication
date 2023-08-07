@@ -118,3 +118,5 @@ Route::post('/create-product', [ProductController::class, 'createProduct'])
     ->middleware([TokenVerificationMiddleware::class]);
 Route::post('/delete-product', [ProductController::class, 'DeleteProduct'])
     ->middleware([TokenVerificationMiddleware::class]);
+Route::get('/list-product', [ProductController::class, 'ProductList'])
+    ->middleware([TokenVerificationMiddleware::class]);
