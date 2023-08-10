@@ -26,7 +26,7 @@ class ProductController extends Controller
         $file_name = $img->getClientOriginalName();
         $img_name = "{$user_id}--{$t}--{$file_name}"; //Here i concat all the things. User_id+time+file_name
 
-        $img_url = "upoload/{$img_name}";
+        $img_url = "uploads/{$img_name}";
 
         //Upload File
         $img->move(public_path('uploads'), $img_url);
@@ -81,7 +81,7 @@ class ProductController extends Controller
         $file_name = $img->getClientOriginalName();
         $img_name = "{$user_id}--{$t}--{$file_name}"; //Here i concat all the things. User_id+time+file_name
 
-        $img_url = "upoload/{$img_name}";
+        $img_url = "uploads/{$img_name}";
 
         //Upload File
         $img->move(public_path('uploads'), $img_url);
@@ -107,12 +107,11 @@ class ProductController extends Controller
 
         }else{
 
-            return Product::where('product_id',$product_id)->where('user_id',$user_id)->update([
+            return Product::where('id',$product_id)->where('user_id',$user_id)->update([
 
                 'name' => $request->input('name'),
                 'price' => $request->input('price'),
                 'unit' => $request->input('unit'),
-              
                 'category_id' => $request->input('category_id')
 
 
@@ -121,6 +120,13 @@ class ProductController extends Controller
 
         
 
+    }
+
+    function ProductByID(Request $request)
+    {
+        $user_id=$request->header('id');
+        $product_id=$request->input('id');
+        return Product::where('id',$product_id)->where('user_id',$user_id)->first();
     }
 
 

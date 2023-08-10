@@ -4,7 +4,7 @@
             <div class="card border rounded shadow-sm p-3">
                 <div class="card-body">
                     <div class="text-center">
-                        <img src="{{ asset('images/Taposhi.png') }}" style="max-height: 150px; width: auto;" class="logo-dark" alt="">
+                        <img src="{{ asset('images/Taposhii.png') }}" style="max-height: 150px; width: auto;" class="logo-dark" alt="">
                     </div>
                     <h4 class="text-center mt-3">SIGN IN</h4>
                     <br/>
