@@ -100,7 +100,7 @@ class InvoiceController extends Controller
         return array(
 
             'customer'=>$customerDetails,
-            'invoice'=>$invoiceProduct,
+            'invoice'=>$invoiceTotal,
             'product'=>$invoiceProduct
 
         );
