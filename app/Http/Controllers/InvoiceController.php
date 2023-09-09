@@ -8,9 +8,21 @@ use App\Models\InvoiceProduct;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class InvoiceController extends Controller
 {
+
+
+    function SalePage(){
+
+        return view('pages.dashboard.sale-page');
+    }
+
+    function InvoicePage(){
+
+        return view('pages.dashboard.invoice-page');
+    }
     
     function invoiceCreate(Request $request){
 
