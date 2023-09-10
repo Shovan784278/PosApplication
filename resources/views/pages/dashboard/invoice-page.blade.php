@@ -1,4 +1,4 @@
-@extends('layout.sidenav-layout')
+@extends('layout.sidenav-layout') 
 
 @section('content')
 
